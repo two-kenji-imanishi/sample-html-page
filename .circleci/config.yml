@@ -20,4 +20,7 @@ jobs:
 workflows:
   deploy_to_gae_workflow:
     jobs:
-      - deploy
+      - deploy:
+          filters:
+            branches:
+              only: main

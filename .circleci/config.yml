@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  gcp-cli: circleci/gcp-cli@2.4.1
+
 jobs:
   deploy:
     docker:
@@ -11,6 +14,11 @@ jobs:
           command: "gcloud app deploy"
 
 workflows:
-  deploy_to_gae_workflow:
+  # deploy_to_gae_workflow:
+  #   jobs:
+  #     - deploy
+  install_and_configure_cli:
     jobs:
-      - deploy
+      - gcp-cli/install_and_initialize_cli:
+          context: myContext
+          executor: gcp-cli/default

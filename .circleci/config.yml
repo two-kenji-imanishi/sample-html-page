@@ -6,19 +6,21 @@ orbs:
 jobs:
   deploy:
     docker:
-      - image: google/cloud-sdk
+      - image: google/cloud-sdk:404.0.0-alpine
     steps:
       - checkout
+      - gcp-cli/install
+      - gcp-cli/initialize
       - run:
           name: "Deploy To GAE"
           command: "gcloud app deploy"
 
 workflows:
-  # deploy_to_gae_workflow:
+  # install_and_configure_cli:
   #   jobs:
-  #     - deploy
-  install_and_configure_cli:
+  #     - gcp-cli/install_and_initialize_cli:
+  #         context: myContext
+  #         executor: gcp-cli/default
+  deploy_to_gae_workflow:
     jobs:
-      - gcp-cli/install_and_initialize_cli:
-          context: myContext
-          executor: gcp-cli/default
+      - deploy

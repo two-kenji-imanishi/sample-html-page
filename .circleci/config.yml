@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Deploy To GAE"
+          command: "gcloud app deploy"
+
+workflows:
+  deploy_to_gae_workflow:
+    jobs:
+      - deploy

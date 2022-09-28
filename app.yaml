@@ -4,10 +4,27 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /
+- url: (/|/index.html)
   static_files: www/index.html
   upload: www/index.html
 
-- url: /(.*)
-  static_files: www/\1
-  upload: www/(.*)
+# 全ファイルを全て設定
+# - url: /(.*)
+#   static_files: www/\1
+#   upload: www/(.*)
+
+# 各ファイルを細かく設定
+- url: /coffee/index.html
+  static_files: www/coffee/index.html
+  upload: www/coffee/index.html
+
+- url: /coffee/js/main.js
+  static_files: www/coffee/js/main.js
+  upload: www/coffee/js/main.js
+
+- url: /coffee/css
+  static_dir: www/coffee/css
+
+- url: /coffee/(images|images_photo)/(.*\.(png|jpg))$
+  static_files: www/coffee/\1/\2
+  upload: www/coffee/(images|images_photo)/.*\.(png|jpg)$

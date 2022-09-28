@@ -12,8 +12,9 @@ jobs:
       - gcp-cli/install
       - gcp-cli/initialize
       - run:
-          name: "Deploy To GAE"
-          command: "gcloud app deploy"
+          name: Deploy To GAE
+          command: |
+            gcloud app deploy
 
 workflows:
   # install_and_configure_cli:
